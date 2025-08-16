@@ -1,0 +1,20 @@
+{
+  "name": "simplechart-example-npm",
+  "private": true,
+  "version": "1.0.0",
+  "author": "Torbjorn Tyridal",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  },
+  "dependencies": {
+    "simplechart": "file:..",
+    "vanjs-core": "^1.5.5"
+  }
+}

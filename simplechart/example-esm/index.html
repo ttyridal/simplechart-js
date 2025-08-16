@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SimpleChart-esm-example</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../dist/simplechart.css">
+  </head>
+  <body>
+    <div id="app">
+    </div>
+    <script type="importmap">
+      {
+        "imports": {
+          "simplechart": "../dist/simplechart.es.js"
+        }
+      }
+    </script>
+
+    <script type="module">
+        import {LinePlot,GraphCanvas} from "simplechart";
+
+        const div = (classes, content) => { 
+            let dom = document.createElement('div');
+            dom.className = classes;
+            dom.append(content);
+            return dom;
+        }
+
+
+        let data = Array.from({length:10},(_,idx)=>[idx,idx]);
+        app.append( GraphCanvas(
+            LinePlot(data),
+            div('chart-title',"SimpleChart"),
+            div('chart-axis-label chart-axis-label-y',"Fuel/h [ºC]"),
+            div('chart-axis-label chart-axis-label-x',"Time [m]")
+        ));
+    </script>
+  </body>
+</html>

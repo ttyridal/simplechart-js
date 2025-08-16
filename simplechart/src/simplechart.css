@@ -1,0 +1,113 @@
+.chart-container {
+    --grid-color: var(--chart-grid-color-default, #334C52);
+    --series-color-0: var(--chart-series-color-0, #2caffe);
+    --series-color-1: var(--chart-series-color-1, #544fc5);
+    --series-color-2: var(--chart-series-color-2, #00e272);
+    --series-color-3: var(--chart-series-color-3, #fe6a35);
+
+    display:grid;
+    gap: 5px;
+    grid-template-rows: auto 1fr auto auto;
+    grid-template-columns: auto auto 1fr;
+    grid-template-areas:
+        "title   title title"
+        "ylabel yticks plotarea"
+        ".         .    xticks"
+        ".      xlabel xlabel";
+
+    .chart-plot-area{
+        position: relative;
+        grid-area: plotarea;
+        & > * {
+            position:absolute;
+        }
+    }
+    svg {
+        width:100%;height:100%;
+        * { vector-effect: non-scaling-stroke; }
+        .series-0 { stroke:var(--series-color-0); }
+        .series-1 { stroke:var(--series-color-1); }
+        .series-2 { stroke:var(--series-color-2); }
+        .series-3 { stroke:var(--series-color-3); }
+
+
+        path {
+            fill: none;
+            stroke-width: 2;
+        }
+        .point {
+          stroke-width:15;
+          stroke-linejoin: round;
+          stroke-linecap:round;
+        }
+        .pointerr {
+          stroke-width:11;
+        }
+    }
+
+    .chart-title {
+        grid-area: title;
+        font-size:13px;
+        justify-self:center;
+    }
+    .chart-axis-label {
+        font-size:12px;
+    }
+    .chart-tick-label {
+        font-size:10px;
+    }
+
+    .grid-axis-x {
+        width:100%;border-top: 0.5px solid var(--grid-color);
+    }
+    .grid-axis-y {
+        height: 100%; border-left: 0.5px solid var(--grid-color);
+    }
+
+    .onegridcell {
+        display: grid;
+        grid-template-areas: "one";
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        & > * {
+            grid-area:one;
+            position:relative;
+        }
+    }
+
+
+    .chart-yticks-area {
+        grid-area: yticks;
+        writing-mode:vertical-lr;
+        & > * {
+            writing-mode:lr;
+            & > * {
+                text-align:right;
+                transform:translateY(-50%);
+            }
+        }
+    }
+    .chart-xticks-area {
+        grid-area: xticks;
+        & > * {
+            & > * {
+                display:inline-block;
+                transform:translateX(-50%);
+            }
+        }
+    }
+
+    .chart-axis-label-y {
+        grid-area: ylabel;
+        writing-mode: sideways-lr;
+        margin: auto;
+    }
+    .chart-axis-label-x {
+        grid-area: xlabel;
+        justify-self:center;
+    }
+}
+@media (prefers-color-scheme: light) {
+
+}
+

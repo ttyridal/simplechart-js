@@ -1,0 +1,44 @@
+{
+  "name": "simplechart",
+  "private": true,
+  "version": "0.1.0",
+  "author": "Torbjorn Tyridal",
+  "license": "MIT",
+  "description": "SimpleChart.js. When all you need is a simple chart",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  },
+  "files":[
+      "src/chart.js",
+      "src/curveutils.js",
+      "src/chart.css"
+  ],
+  "main": "src/chart.js",
+  "browser": "src/chart.js",
+  "exports": {
+    ".": "./src/chart.js",
+    "./style.css": "./dist/simplechart.css"
+  },
+  "keywords": [
+      "Chart",
+      "Plot",
+      "Simple",
+      "UI",
+      "Minimalist",
+      "Lightweight",
+      "Ultra-Lightweight",
+      "Zero-Dependency"
+  ],
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ttyridal/simplechart-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ttyridal/simplechart-js/issues"
+  }
+}
