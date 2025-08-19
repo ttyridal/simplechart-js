@@ -28,13 +28,23 @@ body {
     display:grid;
     grid-template-columns: 1fr;
     gap:3em;
-    grid-template-rows: 5em repeat(2, minmax(50vh, 60vh));
+    grid-template-rows: 5em repeat(3, minmax(50vh, 60vh));
 }
+
+.nowline {
+    border-left: 2px dotted silver;
+    top:0;
+    height:120%;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
+    .nowline {
+        border-left: 2px dotted black;
+    }
 }
 

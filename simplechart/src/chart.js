@@ -96,7 +96,7 @@ export const GraphCanvas = (...args) => {
             Ymin: Math.floor(10*Math.min(...minmaxes.map(p=>p.Ymin)))/10,
             Ymax: Math.ceil(10*Math.max(...minmaxes.map(p=>p.Ymax))  +1)/10,
             Xmin: props?.xaxis?.min || Math.min(...minmaxes.map(p=>p.Xmin)),
-            Xmax: Math.max(...minmaxes.map(p=>p.Xmax)),
+            Xmax: props?.xaxis?.max || Math.max(...minmaxes.map(p=>p.Xmax)),
         }
     minmax.Xrange = minmax.Xmax - minmax.Xmin;
     minmax.Yrange = minmax.Ymax - minmax.Ymin;
@@ -106,13 +106,14 @@ export const GraphCanvas = (...args) => {
     let ytick = BestTick(minmax.Yrange, 5);
     let xtick = BestTick(minmax.Xrange, 10);
     let ytickstart = nearest(minmax.Ymin, 10 ** Math.floor(Math.log10(ytick)));
-    let xtickstart = minmax.Xmin;
+    let xtickstart = props?.xaxis?.tickstart || minmax.Xmin;
 
     let fmter = {format:(n)=>n.toFixed(Math.max(0,-Math.floor(Math.log10(xtick))))}
     let yfmter = {format:(n)=>n.toFixed(Math.max(0,-Math.floor(Math.log10(ytick))))}
     const xisdate = content[0].points[0][0] instanceof Date;
     if(xisdate) {
         [xtick,xtickstart,fmter] = xaxisdate(minmax,xtick,xtickstart,fmter);
+        xtickstart = props?.xaxis?.tickstart || xtickstart;
     }
 
     let xticks = Math.ceil(minmax.Xrange / xtick);
@@ -120,6 +121,7 @@ export const GraphCanvas = (...args) => {
         const t = xtickstart + idx * xtick;
         return [100*xscale(t)/canvas_width, fmter.format(t)]
     });
+    if (xlabels[xlabels.length-1][0]>100) xlabels.pop();
     let yticks = Math.ceil(minmax.Yrange / ytick);
     if (yticks <= 3) {yticks*=2; ytick /=2};
     let ylabels = Array.from({length: yticks}, (_,idx)=>{
