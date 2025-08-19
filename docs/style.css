@@ -36,10 +36,20 @@ div.intro {
     grid-template-rows: repeat(3,15em);
 }
 
+.nowline {
+    width:0px;
+    top:0;
+    height:105%;
+    border-left: 2px dotted silver;
+}
+
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+    :root {
+        color: #213547;
+        background-color: #ffffff;
+    }
+    .nowline {
+        border-left: 2px dotted black;
+    }
 }
 
